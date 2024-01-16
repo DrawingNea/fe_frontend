@@ -65,11 +65,24 @@ export default function Home() {
     }, {} as Record<string, ProjectInterface[]>);
   }
 
+  function removeProjectAfterApplication(projectId: string) {
+    console.log("Updated Projects");
+    const updatedGroup: Record<string, ProjectInterface[]> = {};
+    Object.entries(groupsByArea).forEach(
+      ([area, projects]: [string, ProjectInterface[]]) => {
+        updatedGroup[area] = projects.filter(
+          (project) => project.id !== projectId
+        );
+        setGroupsByArea(updatedGroup);
+      }
+    );
+  }
+
   return (
     <main className="xl:mx-60 lg:mx-40 mx-28">
       {Object.entries(groupsByArea).map(
         ([area, groupProjects]: [string, ProjectInterface[]]) => (
-          <div className="pt-14">
+          <div className="pt-14" key={area}>
             <h1 className="font-bold text-5xl text-center mb-5">{area}</h1>
             <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 w-full place-items-center justify-items-center">
               {groupProjects
@@ -77,8 +90,12 @@ export default function Home() {
                   (a, b) =>
                     new Date(a.start).getTime() - new Date(b.start).getTime()
                 )
-                .map((groupProjects: ProjectCardProps) => {
-                  return <ProjectCard {...groupProjects} />;
+                .map((groupProjects: ProjectInterface) => {
+                  const projectCardProps: ProjectCardProps = {
+                    ...groupProjects,
+                    removeProject: removeProjectAfterApplication,
+                  };
+                  return <ProjectCard key={projectCardProps.id}{...projectCardProps} />;
                 })}
             </div>
           </div>
