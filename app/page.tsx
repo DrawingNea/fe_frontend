@@ -6,6 +6,10 @@ import {
   fetchUser,
 } from "@/lib/actions";
 import {
+  filterProjectsByApplications,
+  filterProjectsBySkills,
+} from "@/lib/filters";
+import {
   UserInterface,
   ProjectInterface,
   ProjectCardProps,
@@ -45,32 +49,12 @@ export default function Home() {
     setGroupsByArea(groupProjectsByArea(projects));
   }, [projects]);
 
-  function filterProjectsBySkills(
-    projects: ProjectInterface[]
-  ): ProjectInterface[] {
-    return projects.filter((project) =>
-      project.skills.every((projectSkill) =>
-        contact!.skills.some((userSkill) => userSkill.id === projectSkill.id)
-      )
-    );
-  }
-
-  function filterProjectsByApplications(
-    projects: ProjectInterface[]
-  ): ProjectInterface[] {
-    return projects.filter(
-      (project) =>
-        !projectApplications.some(
-          (application) => application.shift === project.id
-        )
-    );
-  }
-
   function groupProjectsByArea(
     projects: ProjectInterface[]
   ): Record<string, ProjectInterface[]> {
     return filterProjectsBySkills(
-      filterProjectsByApplications(projects)
+      filterProjectsByApplications(projects, projectApplications),
+      contact!
     ).reduce((groups, project) => {
       const key = project.area;
       if (!groups[key]) {
