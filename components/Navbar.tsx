@@ -7,7 +7,6 @@ const Navbar = () => {
   return (
     <header className="w-full z-10 sticky top-0 bg-gray-950 text-white shadow-md">
       <nav className="max-w-[1440px] mx-auto sm:px-16 px-6 py-4 flex justify-between items-center">
-        <div>
           <Link href="/">
             <Image
               src="/vercel.svg"
@@ -17,8 +16,6 @@ const Navbar = () => {
               className="object-contain invert"
             />
           </Link>
-        </div>
-        <div>
           <ul className=" flex gap-7 text-small items-center">
             {NavLinks.map((link) => (
               <Link href={link.href!} key={link.key} className="">
@@ -26,7 +23,6 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
-        </div>
       </nav>
     </header>
   );
