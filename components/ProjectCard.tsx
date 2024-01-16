@@ -26,18 +26,17 @@ const ProjectCard = ({
         <p className="font-semibold">{area}</p>
         <p className="text-base">{task}</p>
         <p className="font-light">
-          {new Date(start).toLocaleString([], {
+          {new Date(start).toLocaleString(["en-US"], {
             day: "2-digit",
             month: "long",
             hour: "2-digit",
             minute: "2-digit",
           })}{" "}
           -{" "}
-          {new Date(end).toLocaleTimeString([], {
+          {new Date(end).toLocaleTimeString(["en-US"], {
             hour: "2-digit",
             minute: "2-digit",
           })}{" "}
-          Uhr
         </p>
       </div>
       <button
