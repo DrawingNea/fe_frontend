@@ -12,6 +12,7 @@ const ProjectCard = ({
   end,
   skills,
 }: ProjectCardProps) => {
+  const userId = localStorage.getItem("contact-id");
   return (
     <div
       className=" block bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.1),0_10px_20px_-2px_rgba(0,0,0,0.1)]

@@ -12,6 +12,7 @@ export default function Home() {
     const { contact } = await fetchUser();
     console.log(contact);
     setContact(contact);
+    localStorage.setItem("contact-id", contact.id)
   }
   async function getProjects() {
     const projects = await fetchProjectShifts();
