@@ -13,7 +13,7 @@ export type ProjectCardProps = {
   ];
 };
 
-export type Project = {
+export type ProjectInterface = {
   id: string;
   position: string;
   area: string;
@@ -27,3 +27,15 @@ export type Project = {
     }
   ];
 };
+
+export type UserInterface = {
+    id: string;
+    firstName: string;
+    lastName: string;
+    skills: [
+        {
+            id: string;
+            name: string;
+        }
+    ]
+}
