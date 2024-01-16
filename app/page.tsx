@@ -1,13 +1,12 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
 import { fetchProjectShifts, fetchUser } from "@/lib/actions";
-import { Project, ProjectCardProps } from "@/types";
-import Image from "next/image";
+import { UserInterface,ProjectInterface, ProjectCardProps } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [contact, setContact] = useState(null);
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [contact, setContact] = useState<UserInterface>();
+  const [projects, setProjects] = useState<ProjectInterface[]>([]);
   async function getUser() {
     const { contact } = await fetchUser();
     console.log(contact);

@@ -1,7 +1,6 @@
-import { fetchProjectShifts, fetchUser } from "@/lib/actions";
-import { Project, ProjectCardProps } from "@/types";
+import { ProjectCardProps } from "@/types";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const ProjectCard = ({
   id,
