@@ -66,7 +66,6 @@ export default function Home() {
   }
 
   function removeProjectAfterApplication(projectId: string) {
-    console.log("Updated Projects");
     const updatedGroup: Record<string, ProjectInterface[]> = {};
     Object.entries(groupsByArea).forEach(
       ([area, projects]: [string, ProjectInterface[]]) => {
