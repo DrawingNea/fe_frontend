@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="w-full z-10 sticky top-0 bg-white">
+    <header className="w-full z-10 sticky top-0 bg-gray-950 text-white shadow-md">
       <nav className="max-w-[1440px] mx-auto sm:px-16 px-6 py-4 flex justify-between items-center">
         <div>
           <Link href="/">
@@ -14,7 +14,7 @@ const Navbar = () => {
               width={115}
               height={43}
               alt="logo"
-              className="object-contain"
+              className="object-contain invert"
             />
           </Link>
         </div>
