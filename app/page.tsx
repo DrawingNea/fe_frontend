@@ -69,9 +69,10 @@ export default function Home() {
     const updatedGroup: Record<string, ProjectInterface[]> = {};
     Object.entries(groupsByArea).forEach(
       ([area, projects]: [string, ProjectInterface[]]) => {
-        updatedGroup[area] = projects.filter(
-          (project) => project.id !== projectId
-        );
+        const projectsNotContainingId = projects.filter((project) => project.id !== projectId);
+        if(projectsNotContainingId.length > 0) {
+          updatedGroup[area] = projectsNotContainingId;
+        }
         setGroupsByArea(updatedGroup);
       }
     );
@@ -94,7 +95,12 @@ export default function Home() {
                     ...groupProjects,
                     removeProject: removeProjectAfterApplication,
                   };
-                  return <ProjectCard key={projectCardProps.id}{...projectCardProps} />;
+                  return (
+                    <ProjectCard
+                      key={projectCardProps.id}
+                      {...projectCardProps}
+                    />
+                  );
                 })}
             </div>
           </div>
