@@ -1,9 +1,35 @@
-import React from 'react'
+"use client";
+import { NavLinks } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
-  )
-}
+    <header className="w-full z-10 sticky top-0 bg-white">
+      <nav className="max-w-[1440px] mx-auto sm:px-16 px-6 py-4 flex justify-between items-center">
+        <div>
+          <Link href="/">
+            <Image
+              src="/vercel.svg"
+              width={115}
+              height={43}
+              alt="logo"
+              className="object-contain"
+            />
+          </Link>
+        </div>
+        <div>
+          <ul className=" flex gap-7 text-small items-center">
+            {NavLinks.map((link) => (
+              <Link href={link.href!} key={link.href} className="">
+                {link.text}
+              </Link>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </header>
+  );
+};
 
-export default Navbar
+export default Navbar;
