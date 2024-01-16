@@ -17,7 +17,7 @@ const ProjectCard = ({
       className=" block bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.1),0_10px_20px_-2px_rgba(0,0,0,0.1)]
     flex-1 w-[80%] h-60 mb-5 py-10 text-center rounded-2xl"
     >
-      <Link href={`/project/${id}`}>
+      <Link href={`/project-shift/${id}`}>
         <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 ">
           {position}
         </h5>
