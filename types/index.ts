@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type ProjectCardProps = {
   id: string;
   position: string;
@@ -45,4 +47,11 @@ export type ProjectShiftApplicationInterface = {
   contact: string;
   shift: string;
   note: string;
+}
+
+export type CustomModalProps = {
+  children: ReactNode;
+  containerStyles: string;
+  isOpen: boolean;
+  closeModal: () => void;
 }
