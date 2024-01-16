@@ -46,10 +46,18 @@ export default function Home() {
     );
   }
 
+  function filterProjectsByApplications(projects: ProjectInterface[]) {
+    return projects.filter(
+      (project) =>
+        !projectApplications.some(
+          (application) => application.shift === project.id
+        )
+    );
+  }
 
   return (
     <main className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full pt-14 place-items-center">
-      {filterProjectsBySkills(projects)
+      {filterProjectsBySkills(filterProjectsByApplications(projects))
         .sort(
           (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
         )
