@@ -19,6 +19,9 @@ export default function Home() {
   const [projectApplications, setProjectApplications] = useState<
     ProjectShiftApplicationInterface[]
   >([]);
+  const [groupsByArea, setGroupsByArea] = useState<
+    Record<string, ProjectInterface[]>
+  >({});
   async function getUser() {
     const { contact } = await fetchUser();
     setContact(contact);
@@ -38,7 +41,13 @@ export default function Home() {
     getProjectApplications();
   }, []);
 
-  function filterProjectsBySkills(projects: ProjectInterface[]) {
+  useEffect(() => {
+    setGroupsByArea(groupProjectsByArea(projects));
+  }, [projects]);
+
+  function filterProjectsBySkills(
+    projects: ProjectInterface[]
+  ): ProjectInterface[] {
     return projects.filter((project) =>
       project.skills.every((projectSkill) =>
         contact!.skills.some((userSkill) => userSkill.id === projectSkill.id)
@@ -46,7 +55,9 @@ export default function Home() {
     );
   }
 
-  function filterProjectsByApplications(projects: ProjectInterface[]) {
+  function filterProjectsByApplications(
+    projects: ProjectInterface[]
+  ): ProjectInterface[] {
     return projects.filter(
       (project) =>
         !projectApplications.some(
@@ -55,15 +66,40 @@ export default function Home() {
     );
   }
 
+  function groupProjectsByArea(
+    projects: ProjectInterface[]
+  ): Record<string, ProjectInterface[]> {
+    return filterProjectsBySkills(
+      filterProjectsByApplications(projects)
+    ).reduce((groups, project) => {
+      const key = project.area;
+      if (!groups[key]) {
+        groups[key] = [];
+      }
+      groups[key].push(project);
+      return groups;
+    }, {} as Record<string, ProjectInterface[]>);
+  }
+
   return (
-    <main className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full pt-14 place-items-center">
-      {filterProjectsBySkills(filterProjectsByApplications(projects))
-        .sort(
-          (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+    <main className="xl:mx-60 lg:mx-40 mx-28">
+      {Object.entries(groupsByArea).map(
+        ([area, groupProjects]: [string, ProjectInterface[]]) => (
+          <div className="pt-14">
+            <h1 className="font-bold text-5xl text-center mb-5">{area}</h1>
+            <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 w-full place-items-center justify-items-center">
+              {groupProjects
+                .sort(
+                  (a, b) =>
+                    new Date(a.start).getTime() - new Date(b.start).getTime()
+                )
+                .map((groupProjects: ProjectCardProps) => {
+                  return <ProjectCard {...groupProjects} />;
+                })}
+            </div>
+          </div>
         )
-        .map((project: ProjectCardProps) => {
-          return <ProjectCard {...project} />;
-        })}
+      )}
     </main>
   );
 }
