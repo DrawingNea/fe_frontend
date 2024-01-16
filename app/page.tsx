@@ -69,8 +69,10 @@ export default function Home() {
     const updatedGroup: Record<string, ProjectInterface[]> = {};
     Object.entries(groupsByArea).forEach(
       ([area, projects]: [string, ProjectInterface[]]) => {
-        const projectsNotContainingId = projects.filter((project) => project.id !== projectId);
-        if(projectsNotContainingId.length > 0) {
+        const projectsNotContainingId = projects.filter(
+          (project) => project.id !== projectId
+        );
+        if (projectsNotContainingId.length > 0) {
           updatedGroup[area] = projectsNotContainingId;
         }
         setGroupsByArea(updatedGroup);
