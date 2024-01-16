@@ -33,7 +33,10 @@ export const fetchProjectShifts = async () => {
 export const fetchProjectAppliations = async () => {
   try {
     const response = await fetch(
-      "http://localhost:3004/project_shift_applications"
+      "http://localhost:3004/project_shift_applications",
+      {
+        cache: "no-store",
+      }
     );
     if (response.ok) {
       const data = await response.json();
