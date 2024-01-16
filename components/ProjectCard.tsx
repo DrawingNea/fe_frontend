@@ -1,3 +1,4 @@
+import { postProjectApplication } from "@/lib/actions";
 import { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import React from "react";
@@ -41,7 +42,14 @@ const ProjectCard = ({
       </div>
       <button
         className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
-      font-medium rounded-lg text-sm px-5 py-2.5"
+    font-medium rounded-lg text-sm px-5 py-2.5"
+        onClick={() => {
+          postProjectApplication({
+            contact: userId!,
+            shift: id,
+            note: "",
+          });
+        }}
       >
         Get this Job
       </button>
