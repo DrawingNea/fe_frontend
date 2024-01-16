@@ -39,3 +39,10 @@ export type UserInterface = {
         }
     ]
 }
+
+export type ProjectShiftApplicationInterface = {
+  id: string;
+  contact: string;
+  shift: string;
+  note: string;
+}
