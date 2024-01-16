@@ -21,7 +21,7 @@ const Navbar = () => {
         <div>
           <ul className=" flex gap-7 text-small items-center">
             {NavLinks.map((link) => (
-              <Link href={link.href!} key={link.href} className="">
+              <Link href={link.href!} key={link.key} className="">
                 {link.text}
               </Link>
             ))}
