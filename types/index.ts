@@ -13,6 +13,7 @@ export type ProjectCardProps = {
       name: string;
     }
   ];
+  removeProject: (id: string) => void;
 };
 
 export type ProjectInterface = {
