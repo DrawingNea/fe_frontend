@@ -1,12 +1,24 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
-import { fetchProjectShifts, fetchUser } from "@/lib/actions";
-import { UserInterface, ProjectInterface, ProjectCardProps } from "@/types";
+import {
+  fetchProjectAppliations,
+  fetchProjectShifts,
+  fetchUser,
+} from "@/lib/actions";
+import {
+  UserInterface,
+  ProjectInterface,
+  ProjectCardProps,
+  ProjectShiftApplicationInterface,
+} from "@/types";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [contact, setContact] = useState<UserInterface>();
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
+  const [projectApplications, setProjectApplications] = useState<
+    ProjectShiftApplicationInterface[]
+  >([]);
   async function getUser() {
     const { contact } = await fetchUser();
     setContact(contact);
@@ -16,9 +28,14 @@ export default function Home() {
     const projects = await fetchProjectShifts();
     setProjects(projects);
   }
+  async function getProjectApplications() {
+    const prjApplications = await fetchProjectAppliations();
+    setProjectApplications(prjApplications);
+  }
   useEffect(() => {
     getUser();
     getProjects();
+    getProjectApplications();
   }, []);
 
   function filterProjectsBySkills(projects: ProjectInterface[]) {
@@ -28,6 +45,7 @@ export default function Home() {
       )
     );
   }
+
 
   return (
     <main className="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full pt-14 place-items-center">
