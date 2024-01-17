@@ -39,22 +39,23 @@ const ApplicationModal = ({
         onChange={(e) => setApplicationMessage(e.target.value)}
       />
       <div className="flex justify-center">
-      <CustomButton
-        title="Send"
-        btnType="button"
-        containerStyles="bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
+        <CustomButton
+          title="Send"
+          btnType="button"
+          containerStyles="bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
     font-medium rounded-lg text-sm px-5 py-2.5 mt-5"
-        textStyles="text-white text-sm font-medium"
-        handleClick={(e) => {
-          postProjectApplication({
-            shift: id,
-            contact: userId!,
-            note: applicationMessage,
-          });
-          setIsOpen(false);
-          setApplication(true);
-        }}
-      /></div>
+          textStyles="text-white text-sm font-medium"
+          handleClick={(e) => {
+            postProjectApplication({
+              shift: id,
+              contact: userId!,
+              note: applicationMessage,
+            });
+            setIsOpen(false);
+            setApplication(true);
+          }}
+        />
+      </div>
     </CustomModal>
   );
 };
