@@ -73,10 +73,10 @@ export default function Home() {
   return isLoading ? (
     <></>
   ) : (
-    <main className="xl:mx-60 lg:mx-40 mx-28">
+    <main className="xl:mx-60 lg:mx-40 mx-28 my-14">
       {Object.entries(groupsByArea).map(
         ([area, groupProjects]: [string, ProjectInterface[]]) => (
-          <div className="pt-14" key={area}>
+          <div className="pb-14" key={area}>
             <h1 className="font-bold text-5xl text-center mb-5">{area}</h1>
             <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 w-full place-items-center justify-items-center">
               {groupProjects
