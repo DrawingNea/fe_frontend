@@ -9,8 +9,8 @@ const ApplicationModal = ({
   isOpen,
   setIsOpen,
   position,
-  removeProject,
   id,
+  setApplication,
 }: ApplicationModalProps) => {
   const userId = localStorage.getItem("contact-id");
   const [applicationMessage, setApplicationMessage] = useState("");
@@ -51,7 +51,7 @@ const ApplicationModal = ({
             note: applicationMessage,
           });
           setIsOpen(false);
-          removeProject(id);
+          setApplication(true);
         }}
       />
     </CustomModal>

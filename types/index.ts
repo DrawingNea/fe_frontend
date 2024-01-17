@@ -14,7 +14,6 @@ export type ProjectCardProps = {
     }
   ];
   hasApplied?: boolean;
-  removeProject: (id: string) => void;
 };
 
 export type ProjectInterface = {
@@ -72,12 +71,12 @@ export type ApplicationModalProps = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   position: string;
-  removeProject: (id: string) => void;
   id: string;
+  setApplication: (sendApplication: boolean) => void;
 };
 
 export type TimeIntervalProps = {
   start: string;
   end: string;
   textStyles?: string;
-}
+};
