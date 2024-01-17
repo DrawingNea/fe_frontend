@@ -6,6 +6,7 @@ import {
   fetchUser,
 } from "@/lib/actions";
 import {
+  filterOutProjectFromGroup,
   filterProjectsByApplications,
   filterProjectsBySkills,
 } from "@/lib/filters";
@@ -70,18 +71,8 @@ export default function Home() {
   }
 
   function removeProjectAfterApplication(projectId: string) {
-    const updatedGroup: Record<string, ProjectInterface[]> = {};
-    Object.entries(groupsByArea).forEach(
-      ([area, projects]: [string, ProjectInterface[]]) => {
-        const projectsNotContainingId = projects.filter(
-          (project) => project.id !== projectId
-        );
-        if (projectsNotContainingId.length > 0) {
-          updatedGroup[area] = projectsNotContainingId;
-        }
-        setGroupsByArea(updatedGroup);
-      }
-    );
+    const updatedGroup = filterOutProjectFromGroup(projectId, groupsByArea);
+    setGroupsByArea(updatedGroup);
   }
 
   return isLoading ? (
