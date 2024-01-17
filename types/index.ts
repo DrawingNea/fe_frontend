@@ -74,3 +74,9 @@ export type ApplicationModalProps = {
   removeProject: (id: string) => void;
   id: string;
 };
+
+export type TimeIntervalProps = {
+  start: string;
+  end: string;
+  textStyles?: string;
+}
