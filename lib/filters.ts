@@ -15,18 +15,6 @@ export function filterProjectsBySkills(
   );
 }
 
-export function filterProjectsByApplications(
-  projects: ProjectInterface[],
-  projectApplications: ProjectShiftApplicationInterface[]
-): ProjectInterface[] {
-  return projects.filter(
-    (project) =>
-      !projectApplications.some(
-        (application) => application.shift === project.id
-      )
-  );
-}
-
 export function markAppliedProjects(
   projects: ProjectInterface[],
   projectApplications: ProjectShiftApplicationInterface[]
@@ -37,19 +25,4 @@ export function markAppliedProjects(
     );
     return isApplied ? { ...project, hasApplied: true } : project;
   });
-}
-
-export function filterOutProjectFromGroup(projectId: string, groupsByArea: Record<string, ProjectInterface[]>) {
-    const updatedGroup: Record<string, ProjectInterface[]> = {};
-    Object.entries(groupsByArea).forEach(
-      ([area, projects]: [string, ProjectInterface[]]) => {
-        const projectsNotContainingId = projects.filter(
-          (project) => project.id !== projectId
-        );
-        if (projectsNotContainingId.length > 0) {
-          updatedGroup[area] = projectsNotContainingId;
-        }
-      }
-    );
-    return updatedGroup;
 }

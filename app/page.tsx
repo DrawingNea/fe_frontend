@@ -6,8 +6,6 @@ import {
   fetchUser,
 } from "@/lib/actions";
 import {
-  filterOutProjectFromGroup,
-  filterProjectsByApplications,
   filterProjectsBySkills,
   markAppliedProjects,
 } from "@/lib/filters";
@@ -70,11 +68,6 @@ export default function Home() {
       groups[key].push(project);
       return groups;
     }, {} as Record<string, ProjectInterface[]>);
-  }
-
-  function removeProjectAfterApplication(projectId: string) {
-    const updatedGroup = filterOutProjectFromGroup(projectId, groupsByArea);
-    setGroupsByArea(updatedGroup);
   }
 
   return isLoading ? (
