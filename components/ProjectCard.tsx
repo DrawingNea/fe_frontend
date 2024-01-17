@@ -2,7 +2,7 @@ import { postProjectApplication } from "@/lib/actions";
 import { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import React, { useState } from "react";
-import { CustomModal } from ".";
+import { CustomButton, CustomModal } from ".";
 
 const ProjectCard = ({
   id,
@@ -12,7 +12,7 @@ const ProjectCard = ({
   start,
   end,
   skills,
-  removeProject
+  removeProject,
 }: ProjectCardProps) => {
   const userId = localStorage.getItem("contact-id");
   const [isOpen, setIsOpen] = useState(false);
@@ -76,10 +76,13 @@ const ProjectCard = ({
           value={applicationMessage}
           onChange={(e) => setApplicationMessage(e.target.value)}
         />
-        <button
-          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
+        <CustomButton
+          title="Send"
+          btnType="button"
+          containerStyles="bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
     font-medium rounded-lg text-sm px-5 py-2.5 mt-5"
-          onClick={() => {
+          textStyles="text-white text-sm font-medium"
+          handleClick={(e) => {
             postProjectApplication({
               shift: id,
               contact: userId!,
@@ -88,9 +91,7 @@ const ProjectCard = ({
             setIsOpen(false);
             removeProject(id);
           }}
-        >
-          Send
-        </button>
+        />
       </CustomModal>
     </div>
   );
