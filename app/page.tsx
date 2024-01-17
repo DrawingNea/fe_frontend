@@ -9,6 +9,7 @@ import {
   filterOutProjectFromGroup,
   filterProjectsByApplications,
   filterProjectsBySkills,
+  markAppliedProjects,
 } from "@/lib/filters";
 import {
   UserInterface,
@@ -40,7 +41,7 @@ export default function Home() {
     const projects = await fetchProjectShifts();
     setProjects(
       filterProjectsBySkills(
-        filterProjectsByApplications(projects, prjApplications),
+        markAppliedProjects(projects, prjApplications),
         contact
       )
     );
@@ -59,7 +60,7 @@ export default function Home() {
     projects: ProjectInterface[]
   ): Record<string, ProjectInterface[]> {
     return filterProjectsBySkills(
-      filterProjectsByApplications(projects, projectApplications),
+      markAppliedProjects(projects, projectApplications),
       contact!
     ).reduce((groups, project) => {
       const key = project.area;
