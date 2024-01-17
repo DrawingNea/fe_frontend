@@ -16,7 +16,6 @@ import {
   ProjectCardProps,
   ProjectShiftApplicationInterface,
 } from "@/types";
-import { group } from "console";
 import { useEffect, useState } from "react";
 
 export default function Home() {
