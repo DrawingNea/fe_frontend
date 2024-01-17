@@ -28,6 +28,20 @@ export const fetchProjectShifts = async () => {
   }
 };
 
+export const fetchProjectShiftById = async (id: string) => {
+  try {
+    const response = await fetch(`http://localhost:3004/project_shifts?id=${id}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      throw new Error("Error fetching project shifts");
+    }
+  } catch (error) {
+    console.log("Error:", error);
+  }
+}
+
 export const fetchProjectApplications = async () => {
   try {
     const response = await fetch(
