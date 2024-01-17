@@ -1,10 +1,11 @@
 import { NavLinks } from "@/constants";
 import { fetchUser } from "@/lib/actions";
+import { UserInterface } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = async () => {
-  const {contact} = await fetchUser();
+  const {contact} = await fetchUser() as {contact:UserInterface};
   return (
     <header className="w-full z-10 sticky top-0 bg-gray-950 text-white shadow-md h-16">
       <nav className="max-w-[1440px] mx-auto sm:px-16 px-6 h-full py-4 flex justify-between items-center">
