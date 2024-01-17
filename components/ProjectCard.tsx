@@ -12,6 +12,7 @@ const ProjectCard = ({
   end,
   skills,
   removeProject,
+  hasApplied,
 }: ProjectCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -29,15 +30,20 @@ const ProjectCard = ({
         <p className="text-base">{task}</p>
         <TimeInterval start={start} end={end} textStyles="font-light" />
       </div>
-      <button
-        className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
+      {hasApplied ? (
+        <p>Already Applied</p>
+      ) : (
+        <button
+          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
     font-medium rounded-lg text-sm px-5 py-2.5"
-        onClick={() => {
-          setIsOpen(true);
-        }}
-      >
-        Get this Job
-      </button>
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          Get this Job
+        </button>
+      )}
+
       <ApplicationModal
         isOpen={isOpen}
         setIsOpen={setIsOpen}

@@ -13,6 +13,7 @@ export type ProjectCardProps = {
       name: string;
     }
   ];
+  hasApplied?: boolean;
   removeProject: (id: string) => void;
 };
 
