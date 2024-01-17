@@ -34,7 +34,6 @@ const CustomModal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              {/*<Dialog.Overlay className="fixed inset-0" />*/}
               <Dialog.Panel className={`relative bg-white rounded-3xl px-16 py-10 overflow-hidden shadow-xl transform transition-all ${containerStyles}`}>
                 {children}
               </Dialog.Panel>
