@@ -15,9 +15,11 @@ import {
   ProjectCardProps,
   ProjectShiftApplicationInterface,
 } from "@/types";
+import { group } from "console";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
   const [contact, setContact] = useState<UserInterface>();
   const [projects, setProjects] = useState<ProjectInterface[]>([]);
   const [projectApplications, setProjectApplications] = useState<
@@ -26,23 +28,25 @@ export default function Home() {
   const [groupsByArea, setGroupsByArea] = useState<
     Record<string, ProjectInterface[]>
   >({});
-  async function getUser() {
+  async function fetchData() {
     const { contact } = await fetchUser();
     setContact(contact);
     localStorage.setItem("contact-id", contact.id);
-  }
-  async function getProjects() {
-    const projects = await fetchProjectShifts();
-    setProjects(projects);
-  }
-  async function getProjectApplications() {
+
     const prjApplications = await fetchProjectAppliations();
     setProjectApplications(prjApplications);
+
+    const projects = await fetchProjectShifts();
+    setProjects(
+      filterProjectsBySkills(
+        filterProjectsByApplications(projects, prjApplications),
+        contact
+      )
+    );
   }
   useEffect(() => {
-    getUser();
-    getProjects();
-    getProjectApplications();
+    fetchData();
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -80,7 +84,9 @@ export default function Home() {
     );
   }
 
-  return (
+  return isLoading ? (
+    <></>
+  ) : (
     <main className="xl:mx-60 lg:mx-40 mx-28">
       {Object.entries(groupsByArea).map(
         ([area, groupProjects]: [string, ProjectInterface[]]) => (
