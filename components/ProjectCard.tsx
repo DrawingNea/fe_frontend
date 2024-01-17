@@ -1,7 +1,7 @@
 import { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import React, { useState } from "react";
-import { ApplicationModal, TimeInterval } from ".";
+import { ApplicationModal, CustomButton, TimeInterval } from ".";
 
 const ProjectCard = ({
   id,
@@ -33,15 +33,18 @@ const ProjectCard = ({
       {applied ? (
         <p>Already Applied</p>
       ) : (
-        <button
-          className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
-    font-medium rounded-lg text-sm px-5 py-2.5"
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          Get this Job
-        </button>
+        <div className="flex justify-center">
+          <CustomButton
+            title="Get this Job"
+            btnType="button"
+            containerStyles="bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
+         rounded-lg px-5 py-2.5 flex justify-center"
+            textStyles="text-white font-medium text-sm"
+            handleClick={(e) => {
+              setIsOpen(true);
+            }}
+          />
+        </div>
       )}
 
       <ApplicationModal
