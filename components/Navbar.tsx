@@ -2,9 +2,14 @@
 import { NavLinks } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const userId = localStorage.getItem("contact-id");
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+      const localStorageUserId = localStorage.getItem("contact-id") || "";
+      setUserId(localStorageUserId);
+  },[]);
   return (
     <header className="w-full z-10 sticky top-0 bg-gray-950 text-white shadow-md">
       <nav className="max-w-[1440px] mx-auto sm:px-16 px-6 py-4 flex justify-between items-center">
