@@ -12,7 +12,6 @@ import {
 import {
   UserInterface,
   ProjectInterface,
-  ProjectCardProps,
   ProjectShiftApplicationInterface,
 } from "@/types";
 import { useEffect, useState } from "react";
