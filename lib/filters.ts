@@ -27,6 +27,18 @@ export function filterProjectsByApplications(
   );
 }
 
+export function markAppliedProjects(
+  projects: ProjectInterface[],
+  projectApplications: ProjectShiftApplicationInterface[]
+): (ProjectInterface & { applied?: boolean })[] {
+  return projects.map((project) => {
+    const isApplied = projectApplications.some(
+      (application) => application.shift === project.id
+    );
+    return isApplied ? { ...project, hasApplied: true } : project;
+  });
+}
+
 export function filterOutProjectFromGroup(projectId: string, groupsByArea: Record<string, ProjectInterface[]>) {
     const updatedGroup: Record<string, ProjectInterface[]> = {};
     Object.entries(groupsByArea).forEach(
