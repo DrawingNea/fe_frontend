@@ -1,7 +1,7 @@
 import { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import React, { useState } from "react";
-import { ApplicationModal } from ".";
+import { ApplicationModal, TimeInterval } from ".";
 
 const ProjectCard = ({
   id,
@@ -27,19 +27,7 @@ const ProjectCard = ({
       <div className="mb-4 text-neutral-600">
         <p className="font-semibold">{area}</p>
         <p className="text-base">{task}</p>
-        <p className="font-light">
-          {new Date(start).toLocaleString(["en-US"], {
-            day: "2-digit",
-            month: "long",
-            hour: "2-digit",
-            minute: "2-digit",
-          })}{" "}
-          -{" "}
-          {new Date(end).toLocaleTimeString(["en-US"], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}{" "}
-        </p>
+        <TimeInterval start={start} end={end} textStyles="font-light" />
       </div>
       <button
         className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300
