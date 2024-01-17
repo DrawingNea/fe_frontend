@@ -80,3 +80,15 @@ export type TimeIntervalProps = {
   end: string;
   textStyles?: string;
 };
+
+export type DetailsPageProps = {
+  children?: ReactNode;
+  mainTitle: string;
+  subTitle: string;
+  skills: [
+    {
+      id: string;
+      name: string;
+    }
+  ];
+};
