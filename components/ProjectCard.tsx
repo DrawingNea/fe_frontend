@@ -1,8 +1,7 @@
-import { postProjectApplication } from "@/lib/actions";
 import { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import React, { useState } from "react";
-import { ApplicationModal, CustomButton, CustomModal } from ".";
+import { ApplicationModal } from ".";
 
 const ProjectCard = ({
   id,
@@ -14,7 +13,6 @@ const ProjectCard = ({
   skills,
   removeProject,
 }: ProjectCardProps) => {
-  const userId = localStorage.getItem("contact-id");
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div
