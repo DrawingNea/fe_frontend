@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export type ProjectCardProps = {
   id: string;
@@ -55,4 +55,14 @@ export type CustomModalProps = {
   containerStyles: string;
   isOpen: boolean;
   closeModal: () => void;
+}
+
+export type CustomButtonProps = {
+  title: string;
+  containerStyles?: string;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
+  btnType?: "button" | "submit";
+  textStyles?: string;
+  rightIcon?: string;
+  isDisabled?: boolean;
 }
