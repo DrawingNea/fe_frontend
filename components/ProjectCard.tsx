@@ -2,7 +2,7 @@ import { postProjectApplication } from "@/lib/actions";
 import { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import React, { useState } from "react";
-import CustomModal from "./CustomModal";
+import { CustomModal } from ".";
 
 const ProjectCard = ({
   id,
