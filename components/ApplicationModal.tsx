@@ -38,6 +38,7 @@ const ApplicationModal = ({
         value={applicationMessage}
         onChange={(e) => setApplicationMessage(e.target.value)}
       />
+      <div className="flex justify-center">
       <CustomButton
         title="Send"
         btnType="button"
@@ -53,7 +54,7 @@ const ApplicationModal = ({
           setIsOpen(false);
           setApplication(true);
         }}
-      />
+      /></div>
     </CustomModal>
   );
 };
