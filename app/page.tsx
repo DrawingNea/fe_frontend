@@ -28,6 +28,7 @@ export default function Home() {
   const [groupsByArea, setGroupsByArea] = useState<
     Record<string, ProjectInterface[]>
   >({});
+
   async function fetchData() {
     const { contact } = await fetchUser();
     setContact(contact);
@@ -44,6 +45,7 @@ export default function Home() {
       )
     );
   }
+
   useEffect(() => {
     fetchData();
     setIsLoading(false);
