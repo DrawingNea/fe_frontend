@@ -1,7 +1,7 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
 import {
-  fetchProjectAppliations,
+  fetchProjectApplications,
   fetchProjectShifts,
   fetchUser,
 } from "@/lib/actions";
@@ -34,7 +34,7 @@ export default function Home() {
     setContact(contact);
     localStorage.setItem("contact-id", contact.id);
 
-    const prjApplications = await fetchProjectAppliations();
+    const prjApplications = await fetchProjectApplications();
     setProjectApplications(prjApplications);
 
     const projects = await fetchProjectShifts();

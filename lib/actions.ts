@@ -1,7 +1,5 @@
 "use server";
 
-import { ProjectShiftApplicationInterface } from "@/types";
-
 export const fetchUser = async () => {
   try {
     const response = await fetch("http://localhost:3004/me");
@@ -30,7 +28,7 @@ export const fetchProjectShifts = async () => {
   }
 };
 
-export const fetchProjectAppliations = async () => {
+export const fetchProjectApplications = async () => {
   try {
     const response = await fetch(
       "http://localhost:3004/project_shift_applications",
