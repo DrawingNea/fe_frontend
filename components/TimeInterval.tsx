@@ -1,9 +1,22 @@
-import React from 'react'
+import { TimeIntervalProps } from "@/types";
+import React from "react";
 
-const TimeInterval = () => {
+const TimeInterval = ({ start, end, textStyles }: TimeIntervalProps) => {
   return (
-    <div>TimeInterval</div>
-  )
-}
+    <p className={`${textStyles}`}>
+      {new Date(start).toLocaleString(["en-US"], {
+        day: "2-digit",
+        month: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+      })}{" "}
+      -{" "}
+      {new Date(end).toLocaleTimeString(["en-US"], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}{" "}
+    </p>
+  );
+};
 
-export default TimeInterval
+export default TimeInterval;
