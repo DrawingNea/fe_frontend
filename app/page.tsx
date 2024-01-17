@@ -91,18 +91,9 @@ export default function Home() {
                   (a, b) =>
                     new Date(a.start).getTime() - new Date(b.start).getTime()
                 )
-                .map((groupProjects: ProjectInterface) => {
-                  const projectCardProps: ProjectCardProps = {
-                    ...groupProjects,
-                    removeProject: removeProjectAfterApplication,
-                  };
-                  return (
-                    <ProjectCard
-                      key={projectCardProps.id}
-                      {...projectCardProps}
-                    />
-                  );
-                })}
+                .map((project) => (
+                  <ProjectCard key={project.id} {...project} />
+                ))}
             </div>
           </div>
         )
