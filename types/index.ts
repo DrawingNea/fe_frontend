@@ -32,30 +32,30 @@ export type ProjectInterface = {
 };
 
 export type UserInterface = {
-    id: string;
-    firstName: string;
-    lastName: string;
-    skills: [
-        {
-            id: string;
-            name: string;
-        }
-    ]
-}
+  id: string;
+  firstName: string;
+  lastName: string;
+  skills: [
+    {
+      id: string;
+      name: string;
+    }
+  ];
+};
 
 export type ProjectShiftApplicationInterface = {
   id: string;
   contact: string;
   shift: string;
   note: string;
-}
+};
 
 export type CustomModalProps = {
   children: ReactNode;
   containerStyles: string;
   isOpen: boolean;
   closeModal: () => void;
-}
+};
 
 export type CustomButtonProps = {
   title: string;
@@ -65,4 +65,12 @@ export type CustomButtonProps = {
   textStyles?: string;
   rightIcon?: string;
   isDisabled?: boolean;
-}
+};
+
+export type ApplicationModalProps = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  position: string;
+  removeProject: (id: string) => void;
+  id: string;
+};
